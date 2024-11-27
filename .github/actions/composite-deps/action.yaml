@@ -1,0 +1,25 @@
+inputs:
+  NODE_VERSION:
+    type: string
+    required: true
+    default: 20.x
+  WORK_DIR:
+    type: string
+    required: true
+    default: my-app    
+runs:
+  using: composite
+  defaults:
+    run:
+      working-directory: ${{env.WORK_DIR}}  
+  steps:
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{inputs.NODE_VERSION}}
+      - name: Install Dependencies
+        run: npm ci
+        shell: bash
+      - name: Run Unit Tests
+        run: npm run test
+        shell: bash
