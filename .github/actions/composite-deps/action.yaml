@@ -15,10 +15,12 @@ runs:
         with:
           node-version: ${{inputs.node-version}}
       - name: Install Dependencies
+        working-directory: ${{inputs.work_dir}}  
         run: npm ci
         shell: bash
-        working-directory: ${{env.work_dir}}  
+        
       - name: Run Unit Tests
+        working-directory: ${{inputs.work_dir}}
         run: npm run test
         shell: bash
-        working-directory: ${{env.work_dir}}  
+          
