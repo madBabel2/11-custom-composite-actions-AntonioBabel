@@ -9,10 +9,8 @@ inputs:
     default: my-app    
 runs:
   using: composite
-  defaults:
-    run:
-      working-directory: ${{env.work_dir}}  
   steps:
+    run:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
